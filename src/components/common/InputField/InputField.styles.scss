@@ -1,0 +1,39 @@
+.input-group {
+  width: 100%;
+  margin-bottom: 2.5rem;
+
+  .input-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .input-label {
+    text-transform: capitalize;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .input-field {
+    display: block;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 7px;
+    outline: 0;
+    border: 1px solid var(--color-grey);
+
+    &::-webkit-input-placeholder {
+      color: var(--color-grey);
+      text-transform: capitalize;
+    }
+
+    &:focus-visible {
+      transform: scale(1.01);
+      border-color: var(--color-primary);
+    }
+
+    &:focus-visible + .input-label {
+      transform: scale(1.01);
+      color: var(--color-primary);
+    }
+  }
+}
