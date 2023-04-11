@@ -1,13 +1,115 @@
-body {
+:root {
+  --color-primary: #fe724c;
+  --color-accent: #ffc529;
+  --color-text: #1a1d26;
+  --color-grey: #9a9fae;
+  --color-error: #fe2749;
+  --color-shadow-grey: rgba(153, 158, 173, 0.5);
+  --color-shadow-primary: rgba(254, 115, 76, 0.5);
+  --color-shadow-accent: rgba(255, 197, 41, 0.5);
+  --shadow-prop: 0 5px 15px -3px;
+  --transition-prop: var(--transition-prop);
+}
+
+*,
+*::after,
+*::before {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Arial, Helvetica, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: var(--color-grey);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: 3.6rem;
+  margin-bottom: 2.8rem;
+}
+
+h2 {
+  font-size: 3rem;
+  margin-bottom: 2.5rem;
+}
+
+h3 {
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+}
+
+button {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  transition: var(--transition-prop);
+  margin-bottom: 2rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  border-radius: 30px;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.error-message {
+  margin-top: 1rem;
+  color: var(--color-error);
+  animation: shake 0.2s none;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(5rem);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
