@@ -1,15 +1,17 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import Login from '../../pages/Login/Login.page';
+import Signup from '../../pages/Signup/Signup.page';
 
 const Unauthenticated = () => {
   return (
-    <div>
+    <main className="container">
       <Routes>
-        <Route path="/login" element={<div> Login</div>} />
-        <Route path="/signup" element={<div> SignUp</div>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/*" element={<Navigate to={'login'} />} />
       </Routes>
-    </div>
+    </main>
   );
 };
 
