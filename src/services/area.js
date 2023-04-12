@@ -1,8 +1,8 @@
-import axios from 'axios';
+import http from './http';
 
 export async function getAllAreas() {
   try {
-    const allAreas = await axios.get(
+    const allAreas = await http.get(
       `${process.env.REACT_APP_API_ENDPOINT}/areas`
     );
 
