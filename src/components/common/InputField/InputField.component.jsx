@@ -1,5 +1,5 @@
+import { TextField } from '@mui/material';
 import React from 'react';
-import './InputField.styles.scss';
 
 const InputField = ({
   label,
@@ -9,26 +9,17 @@ const InputField = ({
   ...otherProps
 }) => {
   return (
-    <div className="input-group">
-      <div className="input-container">
-        {element === 'textArea' ? (
-          <textarea
-            className="input-field"
-            onChange={handleChange}
-            rows={10}
-            {...otherProps}
-          />
-        ) : (
-          <input
-            className="input-field"
-            onChange={handleChange}
-            {...otherProps}
-          />
-        )}
-        <label className="input-label">{label}</label>
-      </div>
-      {error ? <div className="error-message">{error}</div> : null}
-    </div>
+    <TextField
+      sx={{ margin: '0 0 30px ' }}
+      onChange={handleChange}
+      fullWidth
+      margin="normal"
+      label={label}
+      variant="outlined"
+      error={error ? true : false}
+      helperText={error}
+      {...otherProps}
+    />
   );
 };
 

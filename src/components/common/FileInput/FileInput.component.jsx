@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import React, { useState } from 'react';
 import './FileInput.styles.scss';
 
@@ -7,6 +8,8 @@ const FileInput = ({ label, handleChange, error, ...otherProps }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
 
+    if (!file) return;
+
     setFileName(file.name);
 
     const fileReader = new FileReader();
@@ -14,23 +17,27 @@ const FileInput = ({ label, handleChange, error, ...otherProps }) => {
     fileReader.onloadend = () => handleChange(fileReader.result);
   };
   return (
-    <div className="file-input-group">
-      <label className="input-label">{label}</label>
-      <div>
-        <div className="input-container">
-          <div className="indicator">
-            {fileName ? 'change file' : 'Select a file'}
-          </div>
-          <span className="file-name">{fileName}</span>
-          <input
-            type="file"
-            className="file-input-field"
-            onChange={handleFileChange}
-            {...otherProps}
-          />
-        </div>
-        {error ? <div className="error-message">{error}</div> : null}
-      </div>
+    <div className="file-input">
+      <Button
+        fullWidth
+        variant="outlined"
+        sx={{
+          padding: '13px',
+        }}
+        component="label"
+        color={error ? 'error' : 'primary'}
+      >
+        {fileName || label}
+        <input type="file" hidden onChange={handleFileChange} {...otherProps} />
+      </Button>
+      {error ? (
+        <p
+          class="MuiFormHelperText-root Mui-error MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root"
+          id=":r3:-helper-text"
+        >
+          {error}
+        </p>
+      ) : null}
     </div>
   );
 };

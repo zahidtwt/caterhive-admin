@@ -1,21 +1,17 @@
+import { Button } from '@mui/material';
 import React from 'react';
 import './CustomButton.styles.scss';
 
-const CustomButton = ({
-  label,
-  size = 'medium',
-  primary = false,
-  handleClick,
-  ...otherProps
-}) => {
+const CustomButton = ({ label, theme, handleClick, ...otherProps }) => {
   return (
-    <button
-      className={`btn btn-${primary ? 'primary' : 'secondary'} ${size}`}
+    <Button
+      variant={theme}
+      sx={{ padding: '13px' }}
       onClick={handleClick}
       {...otherProps}
     >
-      {label}
-    </button>
+      Submit
+    </Button>
   );
 };
 

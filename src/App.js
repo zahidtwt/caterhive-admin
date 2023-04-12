@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import Authenticated from './Routes/Authenticated/Authenticated.component';
-import Unauthenticated from './Routes/Unauthenticated/Unauthenticated.component';
+import Unauthenticated from './Routes/Authenticated/Unauthenticated/Unauthenticated.component';
 
 function App() {
   const [user, setUser] = useState(null);
