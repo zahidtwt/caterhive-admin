@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import CustomButton from '../../components/common/CustomButton/CustomButton.component';
 import InputField from '../../components/common/InputField/InputField.component';
 import { getAllAreas } from '../../services/area';
-import { createNewCaterer } from '../../services/caterer';
+import { createNewCaterer, loginCaterer } from '../../services/caterer';
 import FileInput from './../../components/common/FileInput/FileInput.component';
 import './Signup.styles.scss';
 import signupValidator from './signup.validator';
@@ -65,7 +65,7 @@ const Signup = () => {
 
       if (password !== confirmPassword)
         return setErrorMessage({ confirmPassword: 'Password does not match' });
-      const newCaterer = await createNewCaterer({
+      await createNewCaterer({
         businessName,
         email,
         phone,
@@ -75,7 +75,8 @@ const Signup = () => {
         activeDays: `${activeFrom} - ${activeTo}`,
       });
 
-      console.log(newCaterer);
+      await loginCaterer(email, password);
+      document.location = '/';
     } catch (error) {
       setServerError(error.response.data);
     }
