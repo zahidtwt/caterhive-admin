@@ -106,7 +106,7 @@ const Signup = () => {
     <div className="login">
       <form className="login-form" onSubmit={handleSubmit}>
         <InputField
-          label={'business Name'}
+          label={'Business Name'}
           name="businessName"
           value={businessName}
           handleChange={handleChange}
