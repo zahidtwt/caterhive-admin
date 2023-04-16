@@ -2,6 +2,7 @@ import { Autocomplete, TextField } from '@mui/material';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CustomButton from '../../components/common/CustomButton/CustomButton.component';
+import Dropdown from '../../components/common/Dropdown/Dropdown.component';
 import InputField from '../../components/common/InputField/InputField.component';
 import { getAllAreas } from '../../services/area';
 import { createNewCaterer, loginCaterer } from '../../services/caterer';
@@ -103,7 +104,7 @@ const Signup = () => {
     'Friday',
   ];
   return (
-    <div className="login">
+    <div className="signup custom">
       <form className="login-form" onSubmit={handleSubmit}>
         <InputField
           label={'Business Name'}
@@ -153,16 +154,18 @@ const Signup = () => {
 
         <div>Service Available</div>
         <div className="service-available">
-          <DropDown
+          <Dropdown
             name={'activeFrom'}
             label={'From'}
             updateForm={updateForm}
+            width="50%"
             options={weekDays}
           />
-          <DropDown
+          <Dropdown
             name={'activeTo'}
             label={'To'}
             updateForm={updateForm}
+            width="50%"
             options={weekDays}
           />
         </div>
@@ -204,19 +207,3 @@ const Signup = () => {
 };
 
 export default Signup;
-
-const DropDown = ({ options = [], updateForm, name, label }) => {
-  return (
-    <Autocomplete
-      disablePortal
-      onChange={(e, value) => updateForm({ [name]: value })}
-      sx={{
-        display: 'inline-block',
-        margin: ' 10px 10px 30px 0',
-        width: '50%',
-      }}
-      options={options}
-      renderInput={(params) => <TextField {...params} label={label} />}
-    />
-  );
-};
