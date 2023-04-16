@@ -29,49 +29,50 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-button {
-  width: 100%;
-  border: 0;
-  outline: 0;
-  cursor: pointer;
-  transition: var(--transition-prop);
-  margin-bottom: 2rem;
-  font-weight: 600;
-  text-transform: capitalize;
-  border-radius: 30px;
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
-li {
-  list-style: none;
-}
-
 a {
-  color: #1976d2;
+  color: unset;
   text-decoration: none;
+}
+
+.custom {
+  button {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: var(--transition-prop);
+    margin-bottom: 2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    border-radius: 30px;
+  }
+
+  button:active {
+    transform: scale(0.95);
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .error-message {
+    margin-bottom: 1rem;
+    color: var(--color-error);
+    animation: shake 0.2s none;
+  }
+
+  .form {
+    background-color: #fff;
+    width: 100%;
+    padding: 2rem;
+    margin: 2rem;
+    max-width: 700px;
+    border-radius: 10px;
+  }
 }
 
 .container {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-}
-
-.error-message {
-  margin-bottom: 1rem;
-  color: var(--color-error);
-  animation: shake 0.2s none;
-}
-
-@keyframes shake {
-  0% {
-    transform: translateX(5rem);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
 }
