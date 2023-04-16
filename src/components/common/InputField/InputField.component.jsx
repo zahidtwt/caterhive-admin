@@ -10,7 +10,7 @@ const InputField = ({
 }) => {
   return (
     <TextField
-      sx={{ margin: '0 0 30px ' }}
+      sx={{ margin: '0 0 30px ', textTransform: 'capitalize' }}
       onChange={handleChange}
       fullWidth
       margin="normal"
