@@ -23,8 +23,8 @@ const Login = () => {
 
       const { email, password } = formData;
 
-      const a = await loginCaterer(email, password);
-      console.log(a);
+      await loginCaterer(email, password);
+
       document.location = '/';
     } catch (error) {
       console.log(error.response.data);
@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
+    <div className="login custom">
       <form className="login-form" onSubmit={handleSubmit}>
         <InputField
           label={'Email'}
