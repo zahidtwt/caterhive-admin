@@ -8,7 +8,7 @@ const MenuCard = ({ menu }) => {
   const { title, thumbnail, description } = menu;
 
   return (
-    <Card sx={{ width: 250, height: 400 }}>
+    <Card sx={{ width: 250, height: 400, margin: '1rem' }}>
       <CardMedia sx={{ height: 220 }} image={thumbnail} title={title} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
