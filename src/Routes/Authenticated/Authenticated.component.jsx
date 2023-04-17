@@ -18,6 +18,7 @@ import * as React from 'react';
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import FoodItemsPage from '../../pages/FoodItems/FoodItems.page';
 import MenuPage from '../../pages/Menu/Menu.page';
+import DayMenuPage from '../../pages/DayMenu/DayMenu.page';
 
 const drawerWidth = 240;
 
@@ -85,6 +86,7 @@ export default function Authenticated() {
     },
     { label: 'food items', path: '/foodItems', element: <FoodItemsPage /> },
     { label: 'menus', path: '/menus', element: <MenuPage /> },
+    { label: 'day menus', path: '/dayMenus', element: <DayMenuPage /> },
   ];
 
   return (
