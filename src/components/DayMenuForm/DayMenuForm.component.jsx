@@ -4,10 +4,11 @@ import { createNewDayMenu } from '../../services/dayMenu';
 import { getAllMenus } from '../../services/menu';
 import CustomButton from '../common/CustomButton/CustomButton.component';
 import InputField from '../common/InputField/InputField.component';
-import dayMenuValidator from './dayMenu.validator';
+import dayMenuValidator from './dayMenuForm.validator';
 
 const DayMenuForm = ({ setDayMenus, setModal }) => {
   const [formData, setFormData] = useState({
+    title: '',
     price: '',
     menus: [],
   });
@@ -61,6 +62,13 @@ const DayMenuForm = ({ setDayMenus, setModal }) => {
   return (
     <div className="custom">
       <form className="form" onSubmit={handleSubmit}>
+        <InputField
+          label={'title'}
+          name="title"
+          value={formData.title}
+          handleChange={handleChange}
+          error={errorMessage?.title}
+        />
         <InputField
           label={'price'}
           name="price"
