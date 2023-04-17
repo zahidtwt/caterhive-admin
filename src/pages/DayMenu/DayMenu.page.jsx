@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import DayMenuForm from '../../components/DayMenuForm/DayMenuForm.component';
 import CustomModal from '../../components/Modal/Modal.component';
 import { getAllDayMenus } from '../../services/dayMenu';
+import DayMenuCard from './../../components/DayMenuCard/DayMenuCard.component';
 
 const DayMenuPage = () => {
   const [dayMenus, setDayMenus] = useState([]);
@@ -39,11 +40,10 @@ const DayMenuPage = () => {
         spacing={{ xs: 2, md: 4 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
-        {dayMenus.map((menu) => (
-          <Grid item xs={2} sm={4} md={4} key={menu._id}>
-            <h1>{menu.price}</h1>
-          </Grid>
-        ))}
+        {dayMenus.map((dayMenu) => {
+          console.log(dayMenu);
+          return <DayMenuCard key={dayMenu._id} dayMenu={dayMenu} />;
+        })}
       </Grid>{' '}
     </div>
   );
