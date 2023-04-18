@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import CustomButton from '../../components/common/CustomButton/CustomButton.component';
 import Dropdown from '../../components/common/Dropdown/Dropdown.component';
 import InputField from '../../components/common/InputField/InputField.component';
+import weekDays from '../../data/weekDays.json';
 import { getAllAreas } from '../../services/area';
 import { createNewCaterer, loginCaterer } from '../../services/caterer';
 import FileInput from './../../components/common/FileInput/FileInput.component';
@@ -94,15 +95,7 @@ const Signup = () => {
   }, [getAreas]);
 
   const { businessName, email, phone, password, confirmPassword } = formData;
-  const weekDays = [
-    'Saturday',
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-  ];
+
   return (
     <div className="signup custom">
       <form className="login-form" onSubmit={handleSubmit}>
