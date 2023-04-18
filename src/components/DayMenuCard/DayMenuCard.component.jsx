@@ -2,11 +2,12 @@ import React from 'react';
 import MenuCard from './../MenuCard/MenuCard.component';
 import './DayMenuCard.styles.scss';
 
-const DayMenuCard = ({ dayMenu }) => {
+const DayMenuCard = ({ dayMenu, dayName }) => {
   const { price, menus = [], title = 'Day Menu' } = dayMenu;
 
   return (
     <div className="day-menu-card">
+      {dayName ? <h2>{dayName}</h2> : null}
       <div className="menu-container">
         {menus.map((menu) => (
           <MenuCard key={menu._id} menu={menu} />

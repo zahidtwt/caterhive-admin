@@ -41,7 +41,6 @@ const DayMenuPage = () => {
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {dayMenus.map((dayMenu) => {
-          console.log(dayMenu);
           return <DayMenuCard key={dayMenu._id} dayMenu={dayMenu} />;
         })}
       </Grid>{' '}
