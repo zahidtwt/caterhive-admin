@@ -16,9 +16,10 @@ import Typography from '@mui/material/Typography';
 import { styled, useTheme } from '@mui/material/styles';
 import * as React from 'react';
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
+import DayMenuPage from '../../pages/DayMenu/DayMenu.page';
 import FoodItemsPage from '../../pages/FoodItems/FoodItems.page';
 import MenuPage from '../../pages/Menu/Menu.page';
-import DayMenuPage from '../../pages/DayMenu/DayMenu.page';
+import RoutineMenuPage from '../../pages/RoutineMenu/RoutineMenu.page';
 
 const drawerWidth = 240;
 
@@ -87,6 +88,11 @@ export default function Authenticated() {
     { label: 'food items', path: '/foodItems', element: <FoodItemsPage /> },
     { label: 'menus', path: '/menus', element: <MenuPage /> },
     { label: 'day menus', path: '/dayMenus', element: <DayMenuPage /> },
+    {
+      label: 'routine menus',
+      path: '/routineMenus',
+      element: <RoutineMenuPage />,
+    },
   ];
 
   return (
