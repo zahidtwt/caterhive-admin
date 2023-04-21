@@ -19,7 +19,9 @@ import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import DayMenuPage from '../../pages/DayMenu/DayMenu.page';
 import FoodItemsPage from '../../pages/FoodItems/FoodItems.page';
 import MenuPage from '../../pages/Menu/Menu.page';
+import OrderPage from '../../pages/Order/Order.page';
 import RoutineMenuPage from '../../pages/RoutineMenu/RoutineMenu.page';
+import CustomButton from './../../components/common/CustomButton/CustomButton.component';
 
 const drawerWidth = 240;
 
@@ -80,14 +82,15 @@ export default function Authenticated() {
   };
 
   const routes = [
-    {
-      label: 'home',
-      path: '/',
-      element: <div>Auth</div>,
-    },
-    { label: 'food items', path: '/foodItems', element: <FoodItemsPage /> },
+    // {
+    //   label: 'home',
+    //   path: '/',
+    //   element: <div>Auth</div>,
+    // },
+    { label: 'food items', path: '/', element: <FoodItemsPage /> },
     { label: 'menus', path: '/menus', element: <MenuPage /> },
     { label: 'day menus', path: '/dayMenus', element: <DayMenuPage /> },
+    { label: 'orders', path: '/orders', element: <OrderPage /> },
     {
       label: 'routine menus',
       path: '/routineMenus',
@@ -109,7 +112,12 @@ export default function Authenticated() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography
+            variant="h6"
+            sx={{ color: '#fff' }}
+            noWrap
+            component="div"
+          >
             CaterHive Admin
           </Typography>
         </Toolbar>
@@ -153,6 +161,19 @@ export default function Authenticated() {
               </ListItem>
             </Link>
           ))}
+          <ListItem disablePadding>
+            <CustomButton
+              variant="contained"
+              sx={{
+                margin: '2rem',
+              }}
+              label={'logout'}
+              handleClick={() => {
+                localStorage.removeItem('token');
+                document.location = '/';
+              }}
+            />
+          </ListItem>
         </List>
       </Drawer>
       <Main open={open}>
