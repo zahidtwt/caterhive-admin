@@ -1,8 +1,27 @@
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import Authenticated from './Routes/Authenticated/Authenticated.component';
 import Unauthenticated from './Routes/Unauthenticated/Unauthenticated.component';
 import { getOwnData } from './services/caterer';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#fe724c',
+    },
+  },
+  components: {
+    // Name of the component
+    MuiButton: {
+      styleOverrides: {
+        contained: {
+          color: '#fff',
+        },
+      },
+    },
+  },
+});
 
 function App() {
   const [user, setUser] = useState(null);
@@ -20,7 +39,11 @@ function App() {
   }, [getUser]);
 
   return (
-    <div className="App">{user ? <Authenticated /> : <Unauthenticated />}</div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        {user ? <Authenticated /> : <Unauthenticated />}
+      </div>
+    </ThemeProvider>
   );
 }
 

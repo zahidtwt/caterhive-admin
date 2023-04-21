@@ -77,3 +77,18 @@ a {
   max-width: 1440px;
   margin: 0 auto;
 }
+
+.modal-content {
+  background-color: white;
+  width: 100%;
+  max-width: 700px;
+  min-height: 500px;
+  padding: 2rem;
+  border-radius: 2rem;
+  max-height: 90vh;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
