@@ -12,7 +12,6 @@ const MenuForm = ({ setMenus, setModal }) => {
     title: '',
     description: '',
     thumbnail: '',
-    price: '',
     tags: '',
     foodItems: [],
   });
@@ -68,7 +67,7 @@ const MenuForm = ({ setMenus, setModal }) => {
     getFoodItems();
   }, [getFoodItems, foodItemSearch]);
 
-  const { title, description, price, tags } = formData;
+  const { title, description, tags } = formData;
 
   return (
     <div className="custom">
@@ -87,13 +86,7 @@ const MenuForm = ({ setMenus, setModal }) => {
           handleChange={handleChange}
           error={errorMessage?.description}
         />
-        <InputField
-          label={'price'}
-          name="price"
-          value={price}
-          handleChange={handleChange}
-          error={errorMessage?.price}
-        />
+
         <InputField
           label={'tags'}
           name="tags"
