@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { getAllCategories } from '../../services/category';
 import { createNewFoodItem } from '../../services/foodItems';
 import CustomButton from '../common/CustomButton/CustomButton.component';
 import InputField from '../common/InputField/InputField.component';
+import Dropdown from './../common/Dropdown/Dropdown.component';
 import FileInput from './../common/FileInput/FileInput.component';
 import foodItemValidatorSchema from './foodItemForm.validator';
 
@@ -10,7 +12,10 @@ const FoodItemForm = ({ setFoodItems, setModal }) => {
     title: '',
     description: '',
     imgUrl: '',
+    category: '',
+    price: '',
   });
+  const [categories, setCategories] = useState([]);
   const [serverError, setServerError] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -44,7 +49,21 @@ const FoodItemForm = ({ setFoodItems, setModal }) => {
     }
   };
 
-  const { title, description } = formData;
+  const getCategories = useCallback(async () => {
+    const allCategories = await getAllCategories();
+    console.log(allCategories);
+    setCategories(allCategories);
+  }, []);
+
+  useEffect(() => {
+    getCategories();
+  }, [getCategories]);
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
+  const { title, description, price } = formData;
 
   return (
     <div className="custom">
@@ -62,6 +81,24 @@ const FoodItemForm = ({ setFoodItems, setModal }) => {
           value={description}
           handleChange={handleChange}
           error={errorMessage?.description}
+        />
+        <InputField
+          label={'Price'}
+          name="price"
+          value={price}
+          handleChange={handleChange}
+          error={errorMessage?.price}
+        />
+        <Dropdown
+          name={'category'}
+          label={'Category'}
+          updateForm={({ category }) => {
+            setFormData({ ...formData, category: category._id });
+          }}
+          options={categories.map((category) => ({
+            ...category,
+            label: category.name,
+          }))}
         />
         <FileInput
           label={'Select an Image'}
