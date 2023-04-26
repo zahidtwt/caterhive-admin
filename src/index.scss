@@ -78,6 +78,14 @@ a {
   margin: 0 auto;
 }
 
+.grid {
+  display: grid;
+}
+
+.grid-1x2 {
+  grid-template-columns: 1fr;
+}
+
 .modal-content {
   background-color: white;
   width: 100%;
@@ -90,5 +98,11 @@ a {
 
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .grid-1x2 {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
