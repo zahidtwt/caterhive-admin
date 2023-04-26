@@ -1,0 +1,26 @@
+.event-menu-card {
+  padding: 2rem;
+  box-shadow: 0 0 10px 0 #ccc;
+  border-radius: 10px;
+  margin: 1rem;
+
+  text-align: center;
+
+  .section {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+
+    .food-item-container {
+      margin-bottom: 1rem;
+      display: flex;
+      overflow-x: auto;
+      text-align: start;
+
+      & > div {
+        margin-right: 1rem;
+      }
+    }
+  }
+}
