@@ -12,7 +12,6 @@ const RoutineMenuPage = () => {
   const getMenus = useCallback(async () => {
     const data = await getAllRoutineMenus({});
 
-    console.log(data);
     setRoutineMenus(data);
   }, []);
 

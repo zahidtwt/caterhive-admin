@@ -17,6 +17,8 @@ import { styled, useTheme } from '@mui/material/styles';
 import * as React from 'react';
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import DayMenuPage from '../../pages/DayMenu/DayMenu.page';
+import EventMenuPage from '../../pages/EventMenu/EventMenu.page';
+import EventServicePage from '../../pages/EventService/EventService.page';
 import FoodItemsPage from '../../pages/FoodItems/FoodItems.page';
 import MenuPage from '../../pages/Menu/Menu.page';
 import OrderPage from '../../pages/Order/Order.page';
@@ -89,12 +91,22 @@ export default function Authenticated() {
     // },
     { label: 'food items', path: '/', element: <FoodItemsPage /> },
     { label: 'menus', path: '/menus', element: <MenuPage /> },
+    {
+      label: 'event menus',
+      path: '/eventMenus',
+      element: <EventMenuPage />,
+    },
     { label: 'day menus', path: '/dayMenus', element: <DayMenuPage /> },
     { label: 'orders', path: '/orders', element: <OrderPage /> },
     {
       label: 'routine menus',
       path: '/routineMenus',
       element: <RoutineMenuPage />,
+    },
+    {
+      label: 'event service',
+      path: '/eventService',
+      element: <EventServicePage />,
     },
   ];
 
@@ -104,11 +116,10 @@ export default function Authenticated() {
       <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            sx={{ color: '#fff', mr: 2, ...(open && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
@@ -140,7 +151,7 @@ export default function Authenticated() {
             {theme.direction === 'ltr' ? (
               <ChevronLeftIcon />
             ) : (
-              <ChevronRightIcon />
+              <ChevronRightIcon color="#fff" />
             )}
           </IconButton>
         </DrawerHeader>
