@@ -4,16 +4,29 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
-const FoodItemCard = ({ foodItem }) => {
+const FoodItemCard = ({ foodItem, size = 'large' }) => {
   const { title, imgUrl, description, price, category } = foodItem;
+
+  const sizes = {
+    large: {
+      cardSize: { width: 250, height: 400 },
+      imgSize: { height: 220 },
+      margin: '1rem',
+    },
+    small: {
+      cardSize: { width: 170, height: 250 },
+      imgSize: { height: 120 },
+      margin: '0.5rem',
+    },
+  };
   return (
-    <Card sx={{ width: 250, height: 400 }}>
-      <CardMedia sx={{ height: 220 }} image={imgUrl} title={title} />
+    <Card sx={sizes[size].cardSize}>
+      <CardMedia sx={sizes[size].imgSize} image={imgUrl} title={title} />
       <CardContent>
         <Typography
           variant="h6"
           sx={{
-            marginBottom: '1rem',
+            marginBottom: sizes[size].margin,
           }}
         >
           {price} BDT
@@ -24,7 +37,7 @@ const FoodItemCard = ({ foodItem }) => {
         <Typography
           variant="body2"
           sx={{
-            marginBottom: '1rem',
+            marginBottom: sizes[size].margin,
           }}
           component="div"
         >
