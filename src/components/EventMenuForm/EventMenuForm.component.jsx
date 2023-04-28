@@ -14,6 +14,9 @@ const EventMenuForm = ({ setModal, setEventMenus }) => {
     mainCourses: [],
     desserts: [],
     drinks: [],
+    minEventOrder: '',
+    discountOnEachHundred: '',
+    maxDiscount: '',
   });
   const [foodItemOptions, setFoodItemOptions] = useState({
     caterer: '',
@@ -31,6 +34,14 @@ const EventMenuForm = ({ setModal, setEventMenus }) => {
     setErrorMessage(null);
     setServerError(null);
     setFormData({ ...formData, ...data });
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setErrorMessage(null);
+    setServerError(null);
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -93,18 +104,17 @@ const EventMenuForm = ({ setModal, setEventMenus }) => {
   useEffect(() => {
     getFoodItems();
   }, [getFoodItems, foodItemSearch]);
+
+  const { title, minEventOrder, maxDiscount, discountOnEachHundred } = formData;
+
   return (
     <div className="custom">
       <form className="form" onSubmit={handleSubmit}>
         <InputField
           label={'title'}
           name="title"
-          value={formData.title}
-          handleChange={(e) => {
-            setErrorMessage(null);
-            setServerError(null);
-            setFormData({ ...formData, title: e.target.value });
-          }}
+          value={title}
+          handleChange={handleChange}
           error={errorMessage?.title}
         />
 
@@ -218,6 +228,27 @@ const EventMenuForm = ({ setModal, setEventMenus }) => {
               error={errorMessage?.drinks}
             />
           )}
+        />
+        <InputField
+          label={'Minimum Order quantity'}
+          name="minEventOrder"
+          value={minEventOrder}
+          handleChange={handleChange}
+          error={errorMessage?.minEventOrder}
+        />
+        <InputField
+          label={'discount On Each Hundred'}
+          name="discountOnEachHundred"
+          value={discountOnEachHundred}
+          handleChange={handleChange}
+          error={errorMessage?.discountOnEachHundred}
+        />
+        <InputField
+          label={'maxium Discount'}
+          name="maxDiscount"
+          value={maxDiscount}
+          handleChange={handleChange}
+          error={errorMessage?.maxDiscount}
         />
 
         {serverError ? <p className="error-message">{serverError}</p> : null}
