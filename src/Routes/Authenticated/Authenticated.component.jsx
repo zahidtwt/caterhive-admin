@@ -1,43 +1,50 @@
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import MenuIcon from '@mui/icons-material/Menu';
-import MuiAppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import { styled, useTheme } from '@mui/material/styles';
-import * as React from 'react';
-import { Link, Navigate, Route, Routes } from 'react-router-dom';
-import DayMenuPage from '../../pages/DayMenu/DayMenu.page';
-import EventMenuPage from '../../pages/EventMenu/EventMenu.page';
-import EventServicePage from '../../pages/EventService/EventService.page';
-import FoodItemsPage from '../../pages/FoodItems/FoodItems.page';
-import MenuPage from '../../pages/Menu/Menu.page';
-import OrderPage from '../../pages/Order/Order.page';
-import RoutineMenuPage from '../../pages/RoutineMenu/RoutineMenu.page';
-import CustomButton from './../../components/common/CustomButton/CustomButton.component';
+import { lazy } from "react";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import MenuIcon from "@mui/icons-material/Menu";
+import MuiAppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import { styled, useTheme } from "@mui/material/styles";
+import * as React from "react";
+import { Link, Navigate, Route, Routes } from "react-router-dom";
+import DayMenuPage from "../../pages/DayMenu/DayMenu.page";
+import EventMenuPage from "../../pages/EventMenu/EventMenu.page";
+import EventServicePage from "../../pages/EventService/EventService.page";
+import FoodItemsPage from "../../pages/FoodItems/FoodItems.page";
+import MenuPage from "../../pages/Menu/Menu.page";
+import OrderPage from "../../pages/Order/Order.page";
+import RoutineMenuPage from "../../pages/RoutineMenu/RoutineMenu.page";
+import CustomButton from "./../../components/common/CustomButton/CustomButton.component";
+import Dashboard from "../../pages/Dashboard/Dashboard.page";
+import Loadable from "../../ui-component/Loadable";
+
+const DashboardDefault = Loadable(
+  lazy(() => import("../../views/dashboard/Default"))
+);
 
 const drawerWidth = 240;
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: `-${drawerWidth}px`,
     ...(open && {
-      transition: theme.transitions.create('margin', {
+      transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
@@ -47,28 +54,28 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 );
 
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
+  transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
 }));
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
-  justifyContent: 'flex-end',
+  justifyContent: "flex-end",
 }));
 
 export default function Authenticated() {
@@ -89,29 +96,31 @@ export default function Authenticated() {
     //   path: '/',
     //   element: <div>Auth</div>,
     // },
-    { label: 'food items', path: '/', element: <FoodItemsPage /> },
-    { label: 'menus', path: '/menus', element: <MenuPage /> },
+    { label: "Dashboard", path: "/", element: <DashboardDefault /> },
+    // { label: "Dashboard", path: "/dashboard", element: <DashboardDefault /> },
+    { label: "food items", path: "/foodItems", element: <FoodItemsPage /> },
+    { label: "menus", path: "/menus", element: <MenuPage /> },
     {
-      label: 'event menus',
-      path: '/eventMenus',
+      label: "event menus",
+      path: "/eventMenus",
       element: <EventMenuPage />,
     },
-    { label: 'day menus', path: '/dayMenus', element: <DayMenuPage /> },
-    { label: 'orders', path: '/orders', element: <OrderPage /> },
+    { label: "day menus", path: "/dayMenus", element: <DayMenuPage /> },
+    { label: "orders", path: "/orders", element: <OrderPage /> },
     {
-      label: 'routine menus',
-      path: '/routineMenus',
+      label: "routine menus",
+      path: "/routineMenus",
       element: <RoutineMenuPage />,
     },
     {
-      label: 'event service',
-      path: '/eventService',
+      label: "event service",
+      path: "/eventService",
       element: <EventServicePage />,
     },
   ];
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -119,13 +128,13 @@ export default function Authenticated() {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ color: '#fff', mr: 2, ...(open && { display: 'none' }) }}
+            sx={{ color: "#fff", mr: 2, ...(open && { display: "none" }) }}
           >
             <MenuIcon />
           </IconButton>
           <Typography
             variant="h6"
-            sx={{ color: '#fff' }}
+            sx={{ color: "#fff" }}
             noWrap
             component="div"
           >
@@ -137,9 +146,9 @@ export default function Authenticated() {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          '& .MuiDrawer-paper': {
+          "& .MuiDrawer-paper": {
             width: drawerWidth,
-            boxSizing: 'border-box',
+            boxSizing: "border-box",
           },
         }}
         variant="persistent"
@@ -148,7 +157,7 @@ export default function Authenticated() {
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? (
+            {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
             ) : (
               <ChevronRightIcon color="#fff" />
@@ -165,7 +174,7 @@ export default function Authenticated() {
                   <ListItemText
                     primary={route.label}
                     sx={{
-                      textTransform: 'capitalize',
+                      textTransform: "capitalize",
                     }}
                   />
                 </ListItemButton>
@@ -176,12 +185,12 @@ export default function Authenticated() {
             <CustomButton
               variant="contained"
               sx={{
-                margin: '2rem',
+                margin: "2rem",
               }}
-              label={'logout'}
+              label={"logout"}
               handleClick={() => {
-                localStorage.removeItem('token');
-                document.location = '/';
+                localStorage.removeItem("token");
+                document.location = "/";
               }}
             />
           </ListItem>
@@ -195,7 +204,7 @@ export default function Authenticated() {
               const { path, element } = route;
               return <Route key={path} path={path} element={element} />;
             })}
-            <Route path="/*" element={<Navigate to={'/'} />} />
+            <Route path="/*" element={<Navigate to={"/"} />} />
           </Routes>
         </div>
       </Main>
