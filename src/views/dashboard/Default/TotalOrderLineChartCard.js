@@ -84,22 +84,23 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
         const currentTodaysChartData = { ...ChartDataToday };
         currentTodaysChartData.series[0].data = [35, 44];
 
-        // const currentWeekChartData = { ...ChartDataWeek };
-        // const lastWeekOrders = [];
-        // const currentDate = new Date();
-        // data.forEach((order) => {
-        //   const orderDate = new Date(order.orderedAt);
-        //   const diffInTime = currentDate.getTime() - orderDate.getTime();
-        //   const diffInDays = diffInTime / (1000 * 3600 * 24);
-        //   const updateIndex = Math.floor(diffInDays) + 1;
-        //   lastWeekOrders[7 - updateIndex]++;
-        // });
-        // console.log(lastWeekOrders);
-        // currentWeekChartData.series[0].data = lastWeekOrders;
+        const currentWeekChartData = { ...ChartDataWeek };
+        const lastWeekOrders = Array(7).fill(0);
+        const currentDate = new Date();
+        data.forEach((order) => {
+          const orderDate = new Date(order.orderedAt);
+          const diffInTime = currentDate.getTime() - orderDate.getTime();
+          const diffInDays = diffInTime / (1000 * 3600 * 24);
+          const updateIndex = Math.floor(diffInDays) + 1;
+          lastWeekOrders[7 - updateIndex]++;
+        });
+        console.log(lastWeekOrders);
+        console.log("currentWeekChartData", currentWeekChartData);
+        currentWeekChartData.series[0].data = lastWeekOrders;
 
         setOrders(data);
         setTodaysOrderData(currentTodaysChartData);
-        // setWeekOrderData(currentWeekChartData);
+        setWeekOrderData(currentWeekChartData);
       } catch (error) {
         console.log(error);
       }
@@ -217,7 +218,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                     {timeValue ? (
                       <Chart {...todaysOrderData} />
                     ) : (
-                      <Chart {...ChartDataWeek} />
+                      weekOrderData && <Chart {...weekOrderData} />
                     )}
                   </Grid>
                 </Grid>

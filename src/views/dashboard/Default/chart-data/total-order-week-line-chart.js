@@ -23,7 +23,7 @@ const chartData = {
     },
     yaxis: {
       min: 0,
-      max: 100,
+      max: 5,
     },
     tooltip: {
       theme: "dark",
