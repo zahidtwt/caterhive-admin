@@ -1,15 +1,15 @@
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import moment from 'moment/moment';
-import React, { useCallback, useEffect, useState } from 'react';
-import { getOwnOrder, updateOrderById } from '../../services/order';
-import CustomModal from './../../components/Modal/Modal.component';
-import OrderPreview from './../../components/OrderPreview/OrderPreview.component';
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import moment from "moment/moment";
+import React, { useCallback, useEffect, useState } from "react";
+import { getOwnOrder, updateOrderById } from "../../services/order";
+import CustomModal from "./../../components/Modal/Modal.component";
+import OrderPreview from "./../../components/OrderPreview/OrderPreview.component";
 
 const OrderPage = () => {
   const [orders, setOrders] = useState([]);
@@ -62,23 +62,23 @@ const OrderPage = () => {
                     setOrder(order);
                   }}
                   key={order._id}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
                     {customer.fullName}
                   </TableCell>
                   <TableCell align="center">{orderValue}</TableCell>
                   <TableCell
-                    sx={{ textTransform: 'capitalize' }}
+                    sx={{ textTransform: "capitalize" }}
                     align="center"
                   >
                     {orderStatus}
                   </TableCell>
                   <TableCell
-                    sx={{ textTransform: 'capitalize' }}
+                    sx={{ textTransform: "capitalize" }}
                     align="center"
                   >
-                    {moment(orderedAt).format('lll')}
+                    {moment(orderedAt).format("lll")}
                   </TableCell>
                 </TableRow>
               );

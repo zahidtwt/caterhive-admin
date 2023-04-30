@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // material-ui
 import { useTheme, styled } from "@mui/material/styles";
@@ -12,12 +12,13 @@ import Chart from "react-apexcharts";
 import MainCard from "../../../ui-component/cards/MainCard";
 import SkeletonTotalOrderCard from "../../../ui-component/cards/Skeleton/EarningCard";
 
-import ChartDataMonth from "./chart-data/total-order-month-line-chart";
-import ChartDataYear from "./chart-data/total-order-year-line-chart";
+import ChartDataToday from "./chart-data/total-order-today-line-chart";
+import ChartDataWeek from "./chart-data/total-order-week-line-chart";
 
 // assets
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { getOwnOrder } from "../../../services/order";
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
@@ -70,6 +71,42 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
   const handleChangeTime = (event, newValue) => {
     setTimeValue(newValue);
   };
+  const [orders, setOrders] = useState(null);
+  const [todaysOrderData, setTodaysOrderData] = useState(null);
+  const [weekOrderData, setWeekOrderData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getOwnOrder();
+        console.log(data);
+
+        const currentTodaysChartData = { ...ChartDataToday };
+        currentTodaysChartData.series[0].data = [35, 44];
+
+        // const currentWeekChartData = { ...ChartDataWeek };
+        // const lastWeekOrders = [];
+        // const currentDate = new Date();
+        // data.forEach((order) => {
+        //   const orderDate = new Date(order.orderedAt);
+        //   const diffInTime = currentDate.getTime() - orderDate.getTime();
+        //   const diffInDays = diffInTime / (1000 * 3600 * 24);
+        //   const updateIndex = Math.floor(diffInDays) + 1;
+        //   lastWeekOrders[7 - updateIndex]++;
+        // });
+        // console.log(lastWeekOrders);
+        // currentWeekChartData.series[0].data = lastWeekOrders;
+
+        setOrders(data);
+        setTodaysOrderData(currentTodaysChartData);
+        // setWeekOrderData(currentWeekChartData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -103,7 +140,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                       sx={{ color: "inherit" }}
                       onClick={(e) => handleChangeTime(e, true)}
                     >
-                      Month
+                      Today
                     </Button>
                     <Button
                       disableElevation
@@ -112,7 +149,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                       sx={{ color: "inherit" }}
                       onClick={(e) => handleChangeTime(e, false)}
                     >
-                      Year
+                      Week
                     </Button>
                   </Grid>
                 </Grid>
@@ -144,7 +181,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                               mb: 0.75,
                             }}
                           >
-                            $961
+                            {orders && orders.length}
                           </Typography>
                         )}
                       </Grid>
@@ -178,9 +215,9 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                   </Grid>
                   <Grid item xs={6}>
                     {timeValue ? (
-                      <Chart {...ChartDataMonth} />
+                      <Chart {...todaysOrderData} />
                     ) : (
-                      <Chart {...ChartDataYear} />
+                      <Chart {...ChartDataWeek} />
                     )}
                   </Grid>
                 </Grid>
