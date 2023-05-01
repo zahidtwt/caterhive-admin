@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // material-ui
 import { styled, useTheme } from "@mui/material/styles";
@@ -17,6 +17,7 @@ import GetAppTwoToneIcon from "@mui/icons-material/GetAppOutlined";
 import FileCopyTwoToneIcon from "@mui/icons-material/FileCopyOutlined";
 import PictureAsPdfTwoToneIcon from "@mui/icons-material/PictureAsPdfOutlined";
 import ArchiveTwoToneIcon from "@mui/icons-material/ArchiveOutlined";
+import { getOwnOrder } from "../../../services/order";
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.dark,
@@ -57,6 +58,25 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
 const EarningCard = ({ isLoading }) => {
+  const [orders, setOrders] = useState(null);
+  const [totalValue, setTotalValue] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getOwnOrder();
+        let currentTotalValue = 0;
+        data.forEach((order) => {
+          currentTotalValue += order.orderValue;
+        });
+        setTotalValue(currentTotalValue);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  });
+
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -152,7 +172,7 @@ const EarningCard = ({ isLoading }) => {
                         mb: 0.75,
                       }}
                     >
-                      $500.00
+                      BDT {totalValue}
                     </Typography>
                   </Grid>
                   <Grid item>
