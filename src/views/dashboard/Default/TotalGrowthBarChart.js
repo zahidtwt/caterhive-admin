@@ -17,6 +17,7 @@ import { gridSpacing } from "../../../store/constant";
 
 // chart data
 import chartData from "./chart-data/total-growth-bar-chart";
+import { getOwnOrder } from "../../../services/order";
 
 const status = [
   {
@@ -36,6 +37,8 @@ const status = [
 // ==============================|| DASHBOARD DEFAULT - TOTAL GROWTH BAR CHART ||============================== //
 
 const TotalGrowthBarChart = ({ isLoading }) => {
+  const [yearOrderData, setyearOrderData] = useState(null);
+
   const [value, setValue] = useState("today");
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
@@ -99,6 +102,40 @@ const TotalGrowthBarChart = ({ isLoading }) => {
     if (!isLoading) {
       ApexCharts.exec(`bar-chart`, "updateOptions", newChartData);
     }
+
+    // console.log("growthChartData", chartData);
+
+    const fetchData = async () => {
+      try {
+        const data = await getOwnOrder();
+        console.log(data);
+
+        const currentYearOrderData = { ...chartData };
+        console.log(currentYearOrderData);
+        const deliveredOrders = Array(12).fill(0);
+        const notDeliveredOrders = Array(12).fill(0);
+
+        data.forEach((order) => {
+          console.log(order);
+          const orderDate = new Date(order.orderedAt);
+          const monthIdx = orderDate.getMonth();
+          if (order.orderStatus === "delivered") {
+            deliveredOrders[monthIdx]++;
+          } else {
+            notDeliveredOrders[monthIdx]++;
+          }
+        });
+
+        currentYearOrderData.series[0].data = deliveredOrders;
+        currentYearOrderData.series[1].data = notDeliveredOrders;
+
+        setyearOrderData(currentYearOrderData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
   }, [
     navType,
     primary200,
@@ -152,7 +189,7 @@ const TotalGrowthBarChart = ({ isLoading }) => {
               </Grid>
             </Grid>
             <Grid item xs={12}>
-              <Chart {...chartData} />
+              {yearOrderData && <Chart {...yearOrderData} />}
             </Grid>
           </Grid>
         </MainCard>

@@ -57,9 +57,9 @@ const PopularCard = ({ isLoading }) => {
                   justifyContent="space-between"
                 >
                   <Grid item>
-                    <Typography variant="h4">Popular Stocks</Typography>
+                    <Typography variant="h4">Popular Menus</Typography>
                   </Grid>
-                  <Grid item>
+                  {/* <Grid item>
                     <MoreHorizOutlinedIcon
                       fontSize="small"
                       sx={{
@@ -90,13 +90,13 @@ const PopularCard = ({ isLoading }) => {
                       <MenuItem onClick={handleClose}> This Month</MenuItem>
                       <MenuItem onClick={handleClose}> This Year </MenuItem>
                     </Menu>
-                  </Grid>
+                  </Grid> */}
                 </Grid>
               </Grid>
               <Grid item xs={12} sx={{ pt: "16px !important" }}>
                 <BajajAreaChartCard />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <Grid container direction="column">
                   <Grid item>
                     <Grid
@@ -371,15 +371,15 @@ const PopularCard = ({ isLoading }) => {
                     </Typography>
                   </Grid>
                 </Grid>
-              </Grid>
+              </Grid> */}
             </Grid>
           </CardContent>
-          <CardActions sx={{ p: 1.25, pt: 0, justifyContent: "center" }}>
+          {/* <CardActions sx={{ p: 1.25, pt: 0, justifyContent: "center" }}>
             <Button size="small" disableElevation>
               View All
               <ChevronRightOutlinedIcon />
             </Button>
-          </CardActions>
+          </CardActions> */}
         </MainCard>
       )}
     </>
