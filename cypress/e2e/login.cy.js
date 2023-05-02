@@ -25,23 +25,38 @@ describe("template spec", () => {
     // cy.get('button[type="submit"]').click();
 
     // Add Menu
-    cy.contains("menus").click();
+    // cy.contains("menus").click();
+    // cy.contains("Add new menu").click();
+    // cy.get('input[name="title"]').type("Osthir dish");
+    // cy.get('input[name="description"]').type("Khailei shanti");
+    // cy.get('input[name="tags"]').type("Biriyani, Chap, Coffee");
+    // cy.contains("Select an Thumbnail").selectFile("osthirDish.jpg");
+
+    // const foodItems = ["Biriyani", "Chap", "Coffee"];
+
+    // foodItems.forEach((item) => {
+    //   cy.get('input[role="combobox"]').click();
+    //   cy.get('div[role="presentation"]').contains(item).click();
+    // });
+
+    // cy.get('button[type="submit"]').click();
+
+    // Add Day Menu
+    cy.contains("day menus").click();
     cy.contains("Add new menu").click();
-    cy.get('input[name="title"]').type("Osthir dish");
-    cy.get('input[name="description"]').type("Khailei shanti");
-    cy.get('input[name="tags"]').type("Biriyani, Chap, Coffee");
-    cy.contains("Select an Thumbnail").selectFile("osthirDish.jpg");
+    cy.get('input[name="title"]').type("Shera dish");
+    cy.get('input[name="price"]').type("1000");
 
-    const foodItems = ["Biriyani", "Chap", "Coffee"];
+    const menusForDayMenu = ["Mubtasim's Favourite", "My Favorite Meal"];
 
-    foodItems.forEach((item) => {
+    menusForDayMenu.forEach((item) => {
       cy.get('input[role="combobox"]').click();
       cy.get('div[role="presentation"]').contains(item).click();
     });
 
     cy.get('button[type="submit"]').click();
-
-    // Add Day Menu
+    cy.wait(2500);
+    cy.scrollTo("bottom", { duration: 3000 });
 
     // Add Routine Menu
 
