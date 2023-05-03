@@ -5,21 +5,21 @@ const chartData = {
   height: 250,
   options: {
     chart: {
-      //   id: "pie-chart",
-      //   sparkline: {
-      //     enabled: true,
-      //   },
-      //   width: 300,
+      // id: "support-chart",
+      // sparkline: {
+      //   enabled: true,
+      // },
+      // width: 300,
       type: "pie",
     },
     labels: [
-      "Team A",
-      "Team B",
-      "Team C",
-      "Team D",
-      "Team E",
-      "Team F",
-      "Team G",
+      "Menu A",
+      "Menu B",
+      "Menu C",
+      "Menu D",
+      "Menu E",
+      "Menu F",
+      "Menu G",
     ],
     dataLabels: {
       enabled: false,

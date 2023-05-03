@@ -1,8 +1,8 @@
-import http from './http';
+import http from "./http";
 
-export async function getAllMenus({ search = '', searchBy = 'title' }) {
+export async function getAllMenus(search = "", searchBy = "title") {
   try {
-    const query = search ? `?searchBy=${searchBy}search=${search}` : '';
+    const query = search ? `?searchBy=${searchBy}search=${search}` : "";
     const { data } = await http.get(
       `${process.env.REACT_APP_API_ENDPOINT}/menus${query}`
     );

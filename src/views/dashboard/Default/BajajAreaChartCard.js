@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import _ from "lodash";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -12,10 +13,13 @@ import Chart from "react-apexcharts";
 // project imports
 import chartData from "./chart-data/bajaj-area-chart";
 import { getOwnOrder } from "../../../services/order";
+import { getAllMenus } from "../../../services/menu";
 
 // ===========================|| DASHBOARD DEFAULT - BAJAJ AREA CHART CARD ||=========================== //
 
 const BajajAreaChartCard = () => {
+  const [menusData, setMenusData] = useState(_.cloneDeep(chartData));
+
   const theme = useTheme();
   const customization = useSelector((state) => state.customization);
   const { navType } = customization;
@@ -23,14 +27,39 @@ const BajajAreaChartCard = () => {
   const orangeDark = theme.palette.secondary[800];
 
   useEffect(() => {
-    const newSupportChart = {
-      ...chartData.options,
-      colors: [orangeDark],
-      tooltip: {
-        theme: "light",
-      },
+    const fetchData = async () => {
+      try {
+        const menus = await getAllMenus();
+        const currentMenusData = _.cloneDeep(chartData);
+        const count = {};
+        menus.forEach((menu) => {
+          if (count[menu.title]) count[menu.title] += 1;
+          else count[menu.title] = 1;
+        });
+        const currentLabels = [];
+        const currentSeries = [];
+        for (let key of Object.keys(count)) {
+          currentLabels.push(key);
+          currentSeries.push(count[key]);
+        }
+        currentMenusData.options.labels = currentLabels;
+        currentMenusData.series = currentSeries;
+        const newSupportChart = {
+          ...currentMenusData.options,
+          colors: [orangeDark],
+          tooltip: {
+            theme: "light",
+          },
+        };
+        ApexCharts.exec(`support-chart`, "updateOptions", newSupportChart);
+
+        setMenusData(currentMenusData);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    ApexCharts.exec(`support-chart`, "updateOptions", newSupportChart);
+
+    fetchData();
   }, [navType, orangeDark]);
 
   return (
@@ -62,7 +91,7 @@ const BajajAreaChartCard = () => {
           </Typography>
         </Grid>
       </Grid> */}
-      <Chart {...chartData} />
+      {menusData && <Chart {...menusData} />}
     </Card>
   );
 };

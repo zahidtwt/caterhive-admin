@@ -108,15 +108,12 @@ const TotalGrowthBarChart = ({ isLoading }) => {
     const fetchData = async () => {
       try {
         const data = await getOwnOrder();
-        console.log(data);
 
         const currentYearOrderData = { ...chartData };
-        console.log(currentYearOrderData);
         const deliveredOrders = Array(12).fill(0);
         const notDeliveredOrders = Array(12).fill(0);
 
         data.forEach((order) => {
-          console.log(order);
           const orderDate = new Date(order.orderedAt);
           const monthIdx = orderDate.getMonth();
           if (order.orderStatus === "delivered") {
@@ -167,9 +164,9 @@ const TotalGrowthBarChart = ({ isLoading }) => {
                     <Grid item>
                       <Typography variant="subtitle2">Total Growth</Typography>
                     </Grid>
-                    <Grid item>
+                    {/* <Grid item>
                       <Typography variant="h3">$2,324.00</Typography>
-                    </Grid>
+                    </Grid> */}
                   </Grid>
                 </Grid>
                 <Grid item>

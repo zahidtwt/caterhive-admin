@@ -17,7 +17,7 @@ import ChartDataWeek from "./chart-data/total-order-week-line-chart";
 
 // assets
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { getOwnOrder } from "../../../services/order";
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
@@ -80,7 +80,6 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
     const fetchData = async () => {
       try {
         const data = await getOwnOrder();
-        console.log(data);
 
         const currentWeekChartData = { ...ChartDataWeek };
         const lastWeekOrders = Array(7).fill(0);
@@ -128,8 +127,8 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
           <Box sx={{ p: 2.25 }}>
             <Grid container direction="column">
               <Grid item>
-                <Grid container justifyContent="space-between">
-                  <Grid item>
+                <Grid container justifyContent="center">
+                  {/* <Grid item>
                     <Avatar
                       variant="rounded"
                       sx={{
@@ -142,7 +141,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                     >
                       <LocalMallOutlinedIcon fontSize="inherit" />
                     </Avatar>
-                  </Grid>
+                  </Grid> */}
                   <Grid item>
                     <Button
                       disableElevation
@@ -205,7 +204,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                             color: theme.palette.primary.dark,
                           }}
                         >
-                          <ArrowDownwardIcon
+                          <ArrowUpwardIcon
                             fontSize="inherit"
                             sx={{ transform: "rotate3d(1, 1, 1, 45deg)" }}
                           />
