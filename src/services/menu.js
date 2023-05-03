@@ -1,6 +1,6 @@
 import http from "./http";
 
-export async function getAllMenus(search = "", searchBy = "title") {
+export async function getAllMenus({ search = "", searchBy = "title" }) {
   try {
     const query = search ? `?searchBy=${searchBy}search=${search}` : "";
     const { data } = await http.get(
@@ -18,6 +18,18 @@ export async function createNewMenu(newMenu) {
     const { data } = await http.post(
       `${process.env.REACT_APP_API_ENDPOINT}/menus`,
       newMenu
+    );
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function deleteMenuById(id) {
+  try {
+    const { data } = await http.delete(
+      `${process.env.REACT_APP_API_ENDPOINT}/menus/${id}`
     );
 
     return data;

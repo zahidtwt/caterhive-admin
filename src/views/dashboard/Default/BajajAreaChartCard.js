@@ -29,7 +29,7 @@ const BajajAreaChartCard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const menus = await getAllMenus();
+        const menus = await getAllMenus({});
         const currentMenusData = _.cloneDeep(chartData);
         const count = {};
         menus.forEach((menu) => {

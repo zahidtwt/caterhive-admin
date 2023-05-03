@@ -42,7 +42,7 @@ describe("template spec", () => {
     cy.contains("Select an Image").selectFile("beef.jpg");
     cy.get('button[type="submit"]').click();
     cy.wait(waitTime);
-    cy.scrollTo("bottom", { duration: waitTime });
+    // cy.scrollTo("bottom", { duration: waitTime });
 
     // Add Menu
     cy.contains("menus").click();

@@ -1,9 +1,9 @@
-import { Button, Grid } from '@mui/material';
-import React, { useCallback, useEffect, useState } from 'react';
-import DayMenuCard from '../../components/DayMenuCard/DayMenuCard.component';
-import CustomModal from '../../components/Modal/Modal.component';
-import RoutineMenuForm from '../../components/RoutineMenuForm/RoutineMenuForm.component';
-import { getAllRoutineMenus } from '../../services/routineMenu';
+import { Button, Grid, Typography } from "@mui/material";
+import React, { useCallback, useEffect, useState } from "react";
+import DayMenuCard from "../../components/DayMenuCard/DayMenuCard.component";
+import CustomModal from "../../components/Modal/Modal.component";
+import RoutineMenuForm from "../../components/RoutineMenuForm/RoutineMenuForm.component";
+import { getAllRoutineMenus } from "../../services/routineMenu";
 
 const RoutineMenuPage = () => {
   const [routineMenus, setRoutineMenus] = useState([]);
@@ -21,12 +21,15 @@ const RoutineMenuPage = () => {
 
   return (
     <div>
+      <Typography gutterBottom variant="h3" component="div">
+        Routine Menus
+      </Typography>
       <Button
         variant="contained"
         sx={{
-          display: 'block',
-          marginBottom: '2rem',
-          marginLeft: 'auto',
+          display: "block",
+          marginBottom: "2rem",
+          marginLeft: "auto",
         }}
         onClick={() => setModal(true)}
       >
@@ -44,12 +47,15 @@ const RoutineMenuPage = () => {
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {routineMenus
-          ? Object.keys(routineMenus).map((day) => (
-              <DayMenuCard dayMenu={routineMenus[day]} dayName={day} />
-            ))
+          ? Object.keys(routineMenus).map(
+              (day) =>
+                routineMenus[day] && (
+                  <DayMenuCard dayMenu={routineMenus[day]} dayName={day} />
+                )
+            )
           : null}
         <Grid item xs={2} sm={4} md={4}></Grid>
-      </Grid>{' '}
+      </Grid>{" "}
     </div>
   );
 };

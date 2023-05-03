@@ -1,9 +1,9 @@
-import { Button, Grid } from '@mui/material';
-import React, { useCallback, useEffect, useState } from 'react';
-import DayMenuForm from '../../components/DayMenuForm/DayMenuForm.component';
-import CustomModal from '../../components/Modal/Modal.component';
-import { getAllDayMenus } from '../../services/dayMenu';
-import DayMenuCard from './../../components/DayMenuCard/DayMenuCard.component';
+import { Button, Grid, Typography } from "@mui/material";
+import React, { useCallback, useEffect, useState } from "react";
+import DayMenuForm from "../../components/DayMenuForm/DayMenuForm.component";
+import CustomModal from "../../components/Modal/Modal.component";
+import { deleteDayMenuById, getAllDayMenus } from "../../services/dayMenu";
+import DayMenuCard from "./../../components/DayMenuCard/DayMenuCard.component";
 
 const DayMenuPage = () => {
   const [dayMenus, setDayMenus] = useState([]);
@@ -19,14 +19,28 @@ const DayMenuPage = () => {
     getDayMenus();
   }, [getDayMenus]);
 
+  async function deleteDayMenu(id) {
+    try {
+      await deleteDayMenuById(id);
+
+      const data = await getAllDayMenus({});
+      setDayMenus(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
+      <Typography gutterBottom variant="h3" component="div">
+        Day Menus
+      </Typography>
       <Button
         variant="contained"
         sx={{
-          display: 'block',
-          marginBottom: '2rem',
-          marginLeft: 'auto',
+          display: "block",
+          marginBottom: "2rem",
+          marginLeft: "auto",
         }}
         onClick={() => setModal(true)}
       >
@@ -41,9 +55,17 @@ const DayMenuPage = () => {
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {dayMenus.map((dayMenu) => {
-          return <DayMenuCard key={dayMenu._id} dayMenu={dayMenu} />;
+          return (
+            dayMenu && (
+              <DayMenuCard
+                key={dayMenu._id}
+                dayMenu={dayMenu}
+                deleteDayMenu={deleteDayMenu}
+              />
+            )
+          );
         })}
-      </Grid>{' '}
+      </Grid>{" "}
     </div>
   );
 };

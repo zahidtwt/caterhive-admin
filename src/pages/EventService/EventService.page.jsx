@@ -1,10 +1,10 @@
-import { Button } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import React, { useCallback, useEffect, useState } from 'react';
-import EventServiceForm from '../../components/EventServiceForm/EventServiceForm.component';
-import CustomModal from '../../components/Modal/Modal.component';
-import { getAllEventServices } from '../../services/eventService';
-import EventMenuCard from './../../components/EventMenuCard/EventMenuCard.component';
+import { Button } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import React, { useCallback, useEffect, useState } from "react";
+import EventServiceForm from "../../components/EventServiceForm/EventServiceForm.component";
+import CustomModal from "../../components/Modal/Modal.component";
+import { getAllEventServices } from "../../services/eventService";
+import EventMenuCard from "./../../components/EventMenuCard/EventMenuCard.component";
 
 const EventServicePage = () => {
   const [eventServices, setEventServices] = useState(null);
@@ -25,12 +25,15 @@ const EventServicePage = () => {
 
   return (
     <div>
+      <Typography gutterBottom variant="h3" component="div">
+        Event Service
+      </Typography>
       <Button
         variant="contained"
         sx={{
-          display: 'block',
-          marginBottom: '2rem',
-          marginLeft: 'auto',
+          display: "block",
+          marginBottom: "2rem",
+          marginLeft: "auto",
         }}
         onClick={() => setModal(true)}
       >
@@ -45,11 +48,11 @@ const EventServicePage = () => {
       <div className="grid grid-1x2">
         {eventServices
           ? Object.keys(eventServices).map((tier) => (
-              <div style={{ marginBottom: '2rem' }}>
+              <div style={{ marginBottom: "2rem" }}>
                 <Typography
                   variant="h2"
                   sx={{
-                    textTransform: 'capitalize',
+                    textTransform: "capitalize",
                   }}
                 >
                   {tier}

@@ -1,9 +1,9 @@
-import { Button } from '@mui/material';
-import React, { useCallback, useEffect, useState } from 'react';
-import EventMenuCard from '../../components/EventMenuCard/EventMenuCard.component';
-import EventMenuForm from '../../components/EventMenuForm/EventMenuForm.component';
-import CustomModal from '../../components/Modal/Modal.component';
-import { getAllEventMenus } from '../../services/eventMenus';
+import { Button, Typography } from "@mui/material";
+import React, { useCallback, useEffect, useState } from "react";
+import EventMenuCard from "../../components/EventMenuCard/EventMenuCard.component";
+import EventMenuForm from "../../components/EventMenuForm/EventMenuForm.component";
+import CustomModal from "../../components/Modal/Modal.component";
+import { getAllEventMenus } from "../../services/eventMenus";
 
 const EventMenuPage = () => {
   const [eventMenus, setEventMenus] = useState([]);
@@ -22,12 +22,15 @@ const EventMenuPage = () => {
 
   return (
     <div className="container">
+      <Typography gutterBottom variant="h3" component="div">
+        Event Menus
+      </Typography>
       <Button
         variant="contained"
         sx={{
-          display: 'block',
-          marginBottom: '2rem',
-          marginLeft: 'auto',
+          display: "block",
+          marginBottom: "2rem",
+          marginLeft: "auto",
         }}
         onClick={() => setModal(true)}
       >

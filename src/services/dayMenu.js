@@ -1,8 +1,8 @@
-import http from './http';
+import http from "./http";
 
-export async function getAllDayMenus({ search = '', searchBy = 'title' }) {
+export async function getAllDayMenus({ search = "", searchBy = "title" }) {
   try {
-    const query = search ? `?searchBy=${searchBy}search=${search}` : '';
+    const query = search ? `?searchBy=${searchBy}search=${search}` : "";
     const { data } = await http.get(
       `${process.env.REACT_APP_API_ENDPOINT}/dayMenus${query}`
     );
@@ -18,6 +18,18 @@ export async function createNewDayMenu(newDayMenu) {
     const { data } = await http.post(
       `${process.env.REACT_APP_API_ENDPOINT}/dayMenus`,
       newDayMenu
+    );
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function deleteDayMenuById(id) {
+  try {
+    const { data } = await http.delete(
+      `${process.env.REACT_APP_API_ENDPOINT}/dayMenus/${id}`
     );
 
     return data;

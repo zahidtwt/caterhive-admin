@@ -10,6 +10,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { getOwnOrder, updateOrderById } from "../../services/order";
 import CustomModal from "./../../components/Modal/Modal.component";
 import OrderPreview from "./../../components/OrderPreview/OrderPreview.component";
+import { Typography } from "@mui/material";
 
 const OrderPage = () => {
   const [orders, setOrders] = useState([]);
@@ -37,8 +38,9 @@ const OrderPage = () => {
 
   return (
     <div>
-      <h1>Orders</h1>
-
+      <Typography gutterBottom variant="h3" component="div">
+        Orders
+      </Typography>
       <CustomModal open={modal} setOpen={setModal}>
         <OrderPreview order={order} handleUpdate={handleUpdate} />
       </CustomModal>

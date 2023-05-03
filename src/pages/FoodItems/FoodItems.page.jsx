@@ -1,9 +1,9 @@
-import { Button, Grid } from '@mui/material';
-import React, { useCallback, useEffect, useState } from 'react';
-import FoodItemCard from '../../components/FoodItemCard/FoodItemCard.component';
-import CustomModal from '../../components/Modal/Modal.component';
-import { getAllFoodItems } from '../../services/foodItems';
-import FoodItemForm from './../../components/FoodItemForm/FoodItemForm.component';
+import { Button, Grid, Typography } from "@mui/material";
+import React, { useCallback, useEffect, useState } from "react";
+import FoodItemCard from "../../components/FoodItemCard/FoodItemCard.component";
+import CustomModal from "../../components/Modal/Modal.component";
+import { getAllFoodItems } from "../../services/foodItems";
+import FoodItemForm from "./../../components/FoodItemForm/FoodItemForm.component";
 
 const FoodItemsPage = () => {
   const [foodItems, setFoodItems] = useState([]);
@@ -20,12 +20,15 @@ const FoodItemsPage = () => {
   }, [getFoodItems]);
   return (
     <div>
+      <Typography gutterBottom variant="h3" component="div">
+        Food Items
+      </Typography>
       <Button
         variant="contained"
         sx={{
-          display: 'block',
-          marginBottom: '2rem',
-          marginLeft: 'auto',
+          display: "block",
+          marginBottom: "2rem",
+          marginLeft: "auto",
         }}
         onClick={() => setModal(true)}
       >
@@ -44,7 +47,7 @@ const FoodItemsPage = () => {
             <FoodItemCard foodItem={foodItem} />
           </Grid>
         ))}
-      </Grid>{' '}
+      </Grid>{" "}
     </div>
   );
 };
